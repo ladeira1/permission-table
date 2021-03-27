@@ -1,5 +1,6 @@
-import { TableRow } from '../TableRow'
 import { useState } from 'react'
+
+import { TableRow } from '../TableRow'
 
 import { Group } from '../../interfaces/Group'
 
@@ -22,7 +23,13 @@ export function TableGroup({ group }: TableGroupProps) {
         isExpanded={isExpanded} 
         handleExpandOrCollapseChildren={handleExpandOrCollapseChildren} 
       />
-      {isExpanded && group.children.map(item => <TableRow type='child' option={item} key={item.id} />)}
+        {isExpanded && group.children.map(item => 
+          <TableRow 
+            key={item.id} 
+            type='child' 
+            option={item} 
+          />
+        )}
     </>
   )
 }

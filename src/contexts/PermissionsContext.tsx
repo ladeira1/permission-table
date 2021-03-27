@@ -147,13 +147,6 @@ export function PermissionProvider({ children }: PermissionProviderProps): JSX.E
       return permission
     })
 
-    // const postUpdateGroup = updatedPermissions.find(permission => permission.id === updatedGroup.id)
-    // const postUpdateOptions = postUpdateGroup?.children.filter(option => option[column] === true)
-    // if(postUpdateOptions?.length === postUpdateGroup?.children.length) {
-    //   updateAllGroupCheckBoxes(postUpdateGroup!.id, value, column)
-    //   updatedPermissions.
-    // }
-
     setPermissions(updatedPermissions)
     storeCurrentPermissions(updatedPermissions)
   }

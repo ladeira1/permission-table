@@ -45,8 +45,10 @@ export const FirstColumn = styled.td<FirstColumnProps>`
     align-items: center;
     justify-content: center;
 
-    &:img {
-      width: 2px;
+    img {
+      height: 20px;
+      width: 20px;
+      margin-left: 10px;
     }
   }
 `;

@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { Container, FirstColumn } from "./styles";
 
-import chevronRightIcon from '../../assets/icons/chevron-right.svg'
+import chevronUpIcon from '../../assets/icons/chevron-up.svg'
 import chevronDownIcon from '../../assets/icons/chevron-down.svg'
 
 import { CheckBox } from '../Checkbox'
@@ -61,27 +61,40 @@ export function TableRow({
   }
 
   return (
-    <Container 
-      backgroundColor={backgroundColor} 
-    >
+    <Container backgroundColor={backgroundColor} >
       <FirstColumn type={type}>
         {type === 'father' ? (
-          <button type="button" onClick={handleExpandOrCollapseChildrenIfPossible}>
+          <button 
+            type="button" 
+            onClick={handleExpandOrCollapseChildrenIfPossible}
+            data-cy={`${type}-${option.name}`}
+          >
             {option.name}
             {isExpanded ? 
               <img src={chevronDownIcon} alt="Expanded" /> 
-              : <img src={chevronRightIcon} alt="Collapsed" />
+              : <img src={chevronUpIcon} alt="Collapsed" />
             }
           </button>
         ) : (
           <>{option.name}</>
         )}
+
       </FirstColumn>
-      <td><CheckBox isSelected={option.list} column='list' onToggle={handleCheckBoxClick} /></td>
-      <td><CheckBox isSelected={option.details} column='details' onToggle={handleCheckBoxClick} /></td>
-      <td><CheckBox isSelected={option.create} column='create' onToggle={handleCheckBoxClick} /></td>
-      <td><CheckBox isSelected={option.edit} column='edit' onToggle={handleCheckBoxClick} /></td>
-      <td><CheckBox isSelected={option.delete} column='delete' onToggle={handleCheckBoxClick} /></td>
+      <td data-cy={`list-${type}-${option.id}`}>
+        <CheckBox isSelected={option.list} column='list' onToggle={handleCheckBoxClick} />
+      </td>
+      <td data-cy={`details-${type}-${option.id}`}>
+        <CheckBox isSelected={option.details} column='details' onToggle={handleCheckBoxClick} />
+      </td>
+      <td data-cy={`create-${type}-${option.id}`}>
+        <CheckBox isSelected={option.create} column='create' onToggle={handleCheckBoxClick} />
+      </td>
+      <td data-cy={`edit-${type}-${option.id}`}>
+        <CheckBox isSelected={option.edit} column='edit' onToggle={handleCheckBoxClick} />
+      </td>
+      <td data-cy={`delete-${type}-${option.id}`}>
+        <CheckBox isSelected={option.delete} column='delete' onToggle={handleCheckBoxClick} />
+      </td>
     </Container>
   )
 }

@@ -11,7 +11,7 @@ export const Container = styled.div`
   margin-top: 2rem;
   padding-bottom: 2rem;
 
-  @media screen and (min-height: 800px) {
+  @media screen and (min-height: 900px) {
     position: absolute;
     bottom: 2rem;
     right: 50;

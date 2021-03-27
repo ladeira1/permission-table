@@ -13,6 +13,7 @@ export function Button() {
       <button 
         type="button" 
         onClick={handleRegisterClick}
+        data-cy="register-button"
       >
         CADASTRAR 
       </button>

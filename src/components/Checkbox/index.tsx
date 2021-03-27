@@ -12,14 +12,13 @@ interface CheckBoxProps {
 }
 
 export function CheckBox({ isSelected, column, onToggle }: CheckBoxProps) {
-
   function handleCheckboxClick(event: ChangeEvent<HTMLInputElement>) {
     onToggle(event.target.checked, column)
   }
 
   return (
-    <Container isSelected={isSelected}>
-       {isSelected  && <img src={checkIcon} alt="Check"/>}
+    <Container isSelected={isSelected} >
+       {isSelected  && <img src={checkIcon} alt="Check" />}
        <input 
           id="checkbox" 
           type="checkbox" 
