@@ -2,12 +2,11 @@ import styled from 'styled-components'
 
 export const Container = styled.header`
   width: 100vw;
+  max-height: 8vh;
   max-width: 1280px;
-  height: 10vh;
-  flex: 1; 
 
   padding: 2.5rem 0;
-  margin: 0 auto 4rem auto;
+  margin: 0 auto;
 
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);  
 

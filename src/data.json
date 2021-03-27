@@ -1,0 +1,38 @@
+{
+  "groups":[
+    {
+      "id": 1,
+      "name": "Análise",
+      "children": [
+        { "id": 1, "name": "Análise de contas" },
+        { "id": 2, "name": "Análise de transações" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Contas",
+      "children": [
+        { "id": 1, "name": "Cliente" },
+        { "id": 2, "name": "Transações" },
+        { "id": 3, "name": "Contas digitais" }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Customização",
+      "children": [
+        { "id": 1, "name": "Limites e horários" },
+        { "id": 2, "name": "Tarifas" },
+        { "id": 3, "name": "Tarifas personalizadas"},
+        { "id": 4, "name": "Conta" }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Financeiro",
+      "children": [
+        { "id": 1, "name": "Entradas" }
+      ]
+    }
+  ]
+}

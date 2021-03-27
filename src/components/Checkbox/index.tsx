@@ -1,22 +1,31 @@
-import { useState } from 'react'
-import { Container } from './styles'
-
+import { ChangeEvent } from 'react'
 import checkIcon from '../../assets/icons/check.svg'
 
-export function CheckBox() {
-  const [isSelected, setIsSelected] = useState(true)
+import { Container } from './styles'
 
-  function handleButtonClick() {
-    setIsSelected(oldState => !oldState)
+import { Column } from '../../interfaces/Column'
+
+interface CheckBoxProps {
+  isSelected: boolean
+  column: Column
+  onToggle: (value: boolean, column: Column) => void
+}
+
+export function CheckBox({ isSelected, column, onToggle }: CheckBoxProps) {
+
+  function handleCheckboxClick(event: ChangeEvent<HTMLInputElement>) {
+    onToggle(event.target.checked, column)
   }
 
   return (
-    <Container
-      onClick={handleButtonClick} 
-      isSelected={isSelected}
-     >
-       {isSelected && <img src={checkIcon} alt="Check"/>}
-       <input type="checkbox" />
+    <Container isSelected={isSelected}>
+       {isSelected  && <img src={checkIcon} alt="Check"/>}
+       <input 
+          id="checkbox" 
+          type="checkbox" 
+          checked={isSelected} 
+          onChange={handleCheckboxClick} 
+       />
     </Container>
   )
 }

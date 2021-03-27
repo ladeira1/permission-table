@@ -17,7 +17,7 @@ export const Container = styled.tr<ContainerProps>`
 
   td {
     width: 8rem;
-    height: 3rem;
+    height: 2.8rem;
 
     padding-left: 1rem;
   }
@@ -30,10 +30,23 @@ export const Container = styled.tr<ContainerProps>`
 `;
 
 export const FirstColumn = styled.td<FirstColumnProps>`
-  font-size: ${({ type, theme }) => type === 'child'? '0.9rem' : '1.05rem'};
-  font-weight: ${({ type, theme }) => type === 'child'? 400 : 500};
+  button {
+    font-size: ${({ type, theme }) => type === 'child'? '0.9rem' : '1.03rem'};
+    font-weight: ${({ type, theme }) => type === 'child'? 400 : 500};
 
-  @media screen and (min-width: 530px) {
-    font-size: ${({ type, theme }) => type === 'child'? '1rem' : '1.12em'};
+    @media screen and (min-width: 530px) {
+      font-size: ${({ type, theme }) => type === 'child'? '1rem' : '1.08em'};
+    }
+
+    border: none;
+    background-color: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:img {
+      width: 2px;
+    }
   }
 `;

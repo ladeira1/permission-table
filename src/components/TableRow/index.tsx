@@ -1,14 +1,33 @@
+import { useContext } from "react";
+
 import { Container, FirstColumn } from "./styles";
 
+import chevronRightIcon from '../../assets/icons/chevron-right.svg'
+import chevronDownIcon from '../../assets/icons/chevron-down.svg'
+
 import { CheckBox } from '../Checkbox'
-import { useContext } from "react";
 import { ThemeContext } from "styled-components";
 
+import { Option } from "../../interfaces/Option";
+import { Group } from "../../interfaces/Group";
+import { Type } from "../../interfaces/Type";
+import { usePermission } from "../../hooks/usePermission";
+import { Column } from "../../interfaces/Column";
+
 interface TableRowProps {
-  type: 'all' | 'father' | 'child'
+  option: Group | Option
+  type: Type
+  isExpanded?: boolean
+  handleExpandOrCollapseChildren?: () => void
 }
 
-export function TableRow({ type }: TableRowProps) {
+export function TableRow({ 
+  option,
+  type, 
+  isExpanded = false,
+  handleExpandOrCollapseChildren,
+}: TableRowProps) {
+  const { updateCheckBox } = usePermission()
   const { colors } = useContext(ThemeContext);
   let backgroundColor
 
@@ -30,20 +49,39 @@ export function TableRow({ type }: TableRowProps) {
       throw new Error('Unhandled type')
     }
   }
-  
+
+  function handleExpandOrCollapseChildrenIfPossible() {
+    if(handleExpandOrCollapseChildren && type === 'father') {
+      handleExpandOrCollapseChildren()
+    }
+  }
+
+  function handleCheckBoxClick(value: boolean, column : Column) {
+    updateCheckBox(type, value, option, column)
+  }
+
   return (
     <Container 
       backgroundColor={backgroundColor} 
- 
     >
       <FirstColumn type={type}>
-        Todos
+        {type === 'father' ? (
+          <button type="button" onClick={handleExpandOrCollapseChildrenIfPossible}>
+            {option.name}
+            {isExpanded ? 
+              <img src={chevronDownIcon} alt="Expanded" /> 
+              : <img src={chevronRightIcon} alt="Collapsed" />
+            }
+          </button>
+        ) : (
+          <>{option.name}</>
+        )}
       </FirstColumn>
-      <td><CheckBox /></td>
-      <td><CheckBox /></td>
-      <td><CheckBox /></td>
-      <td><CheckBox /></td>
-      <td><CheckBox /></td>
+      <td><CheckBox isSelected={option.list} column='list' onToggle={handleCheckBoxClick} /></td>
+      <td><CheckBox isSelected={option.details} column='details' onToggle={handleCheckBoxClick} /></td>
+      <td><CheckBox isSelected={option.create} column='create' onToggle={handleCheckBoxClick} /></td>
+      <td><CheckBox isSelected={option.edit} column='edit' onToggle={handleCheckBoxClick} /></td>
+      <td><CheckBox isSelected={option.delete} column='delete' onToggle={handleCheckBoxClick} /></td>
     </Container>
   )
 }

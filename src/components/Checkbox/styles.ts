@@ -4,7 +4,7 @@ interface ConatainerPros {
   isSelected: boolean
 }
 
-export const Container = styled.div<ConatainerPros>`
+export const Container = styled.label<ConatainerPros>`
   width: 1.2rem;
   height: 1.2rem;
 
@@ -33,5 +33,7 @@ export const Container = styled.div<ConatainerPros>`
   :hover {
     filter: brightness(0.85);
     background-color: ${({ isSelected, theme }) => isSelected? theme.colors.gray900 : theme.colors.white};
+
+    cursor: pointer;
   }
 `;
